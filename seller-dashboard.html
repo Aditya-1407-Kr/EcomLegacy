@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Seller Dashboard | EcomLegacy</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#13c8ec",
+            "background-light": "#f6f8f8",
+            "background-dark": "#101f22",
+          },
+          fontFamily: { "display": ["Plus Jakarta Sans", "sans-serif"] },
+          borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="logo.svg" alt="EcomLegacy" class="h-10 w-10"/>
+        <span class="text-xl font-extrabold text-slate-900 dark:text-white">EcomLegacy Seller</span>
+      </div>
+      <button onclick="logout()" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg transition-all flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">logout</span>
+        Logout
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Welcome Section -->
+    <div class="mb-10">
+      <h1 class="text-4xl font-extrabold text-slate-900 dark:text-white mb-2">Welcome, <span id="seller-name">Seller</span>! 👋</h1>
+      <p class="text-slate-600 dark:text-slate-400">Manage your products and track your sales</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+      <!-- Total Sales -->
+      <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">Total Sales</p>
+            <p class="text-2xl font-bold text-slate-900 dark:text-white">₹<span id="total-sales">0</span></p>
+          </div>
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">trending_up</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Products -->
+      <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">My Products</p>
+            <p class="text-2xl font-bold text-slate-900 dark:text-white"><span id="product-count">0</span></p>
+          </div>
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">inventory_2</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Total Orders -->
+      <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">Total Orders</p>
+            <p class="text-2xl font-bold text-slate-900 dark:text-white"><span id="total-orders">0</span></p>
+          </div>
+          <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">shopping_bag</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-8">
+      <h2 class="text-2xl font-bold mb-6">Your Products</h2>
+      
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-slate-50 dark:bg-slate-700 border-b border-slate-200 dark:border-slate-600">
+            <tr>
+              <th class="px-6 py-4 text-left text-sm font-semibold">Product</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold">Price</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold">Product Link</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold">Sales</th>
+              <th class="px-6 py-4 text-left text-sm font-semibold">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="products-list" class="divide-y divide-slate-200 dark:divide-slate-700">
+            <tr>
+              <td class="px-6 py-4 text-slate-500 text-center" colspan="5">Loading products...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="seller-dashboard.js"></script>
+</body>
+</html>

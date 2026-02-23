@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | EcomLegacy Marketplace</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#13c8ec",
+                    "background-light": "#f6f8f8",
+                    "background-dark": "#101f22",
+                },
+                fontFamily: {
+                    "display": ["Plus Jakarta Sans"]
+                },
+                borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+            },
+        },
+    }
+</script>
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .step-active {
+        color: #13c8ec;
+        border-bottom: 2px solid #13c8ec;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100">
+<!-- Navigation Header -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<img src="logo.svg" alt="EcomLegacy" class="h-10 w-10"/>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">EcomLegacy</h1>
+</div>
+<div class="flex items-center gap-6">
+<a class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="marketplace.html">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+Back to Marketplace
+</a>
+<div class="h-8 w-[1px] bg-slate-200 dark:border-slate-700"></div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400">help_outline</span>
+<div class="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: Checkout Form -->
+<div class="lg:col-span-7 space-y-10">
+<!-- Progress -->
+<nav class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+<div class="flex items-center gap-3 step-active pb-4 -mb-[18px]">
+<span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-sm font-bold">1</span>
+<span class="font-semibold text-sm">Information</span>
+</div>
+<div class="flex items-center gap-3 text-slate-400 pb-4 -mb-[18px]">
+<span class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-200 dark:bg-slate-800 text-sm font-bold">2</span>
+<span class="font-semibold text-sm">Payment</span>
+</div>
+</nav>
+
+<!-- Billing Info -->
+<section class="space-y-6">
+<div>
+<h2 class="text-2xl font-bold">Billing Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">First Name</label>
+<input id="firstName" class="w-full h-12 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary/20 transition-all px-3" placeholder="John" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Last Name</label>
+<input id="lastName" class="w-full h-12 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary/20 transition-all px-3" placeholder="Doe" type="text"/>
+</div>
+<div class="md:col-span-2 space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+<input id="email" class="w-full h-12 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 focus:border-primary focus:ring-primary/20 transition-all px-3" placeholder="john@example.com" type="email" required/>
+<div id="email-error" class="text-xs text-red-500 hidden">Please enter a genuine email address</div>
+<div id="email-success" class="text-xs text-green-500 hidden flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> Email looks good!</div>
+</div>
+</div>
+</section>
+
+<!-- Payment Method -->
+<section class="space-y-6">
+<h2 class="text-2xl font-bold">Payment Method</h2>
+<div class="p-6 rounded-xl bg-white dark:bg-slate-900 border-2 border-primary">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div>
+<p class="font-bold">Razorpay Payment Gateway - Secure & Verified</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Secure payment processing</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Trust Badges -->
+<div class="flex flex-wrap items-center gap-8 py-6 px-8 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="text-sm font-medium">SSL Encrypted</span>
+</div>
+<div class="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-primary">security</span>
+<span class="text-sm font-medium">Fraud Protection</span>
+</div>
+<div class="flex items-center gap-2 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-primary">cloud_download</span>
+<span class="text-sm font-medium">Instant Access</span>
+</div>
+</div>
+</div>
+
+<!-- Right Column: Order Summary -->
+<aside class="lg:col-span-5 sticky top-28">
+<div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h3 class="text-xl font-bold">Order Summary</h3>
+</div>
+
+<!-- Cart Items -->
+<div class="p-6 space-y-4 max-h-96 overflow-y-auto" id="cart-items">
+<p class="text-center text-slate-500 py-8">Loading cart...</p>
+</div>
+
+<!-- Discount -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 flex gap-2">
+<input class="flex-1 h-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-primary focus:ring-0 px-3" placeholder="Promo Code" type="text"/>
+<button class="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-sm font-bold rounded-lg hover:bg-slate-300 transition-colors">Apply</button>
+</div>
+
+<!-- Price Breakdown -->
+<div class="p-6 space-y-3">
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Subtotal</span>
+<span class="font-medium" id="subtotal">₹0.00</span>
+</div>
+<div class="flex justify-between text-slate-600 dark:text-slate-400">
+<span>Tax</span>
+<span class="font-medium">₹0.00</span>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-400 uppercase tracking-tighter">Total Amount</span>
+<span class="text-3xl font-extrabold text-slate-900 dark:text-white" id="total-amount">₹0.00</span>
+</div>
+<span class="text-xs font-medium text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">INR</span>
+</div>
+</div>
+
+<!-- CTA Button -->
+<div class="p-6 pt-0">
+<button id="pay-button" class="w-full bg-primary hover:bg-primary/90 text-white font-extrabold py-5 rounded-xl shadow-lg shadow-primary/30 transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">lock</span>
+Pay with Razorpay
+</button>
+<p class="text-center text-xs text-slate-500 mt-4 px-4 leading-relaxed">
+By clicking "Pay with Razorpay", you agree to our <a class="underline" href="#">Terms of Service</a>. Your assets will be available for download immediately.
+</p>
+</div>
+</div>
+
+<!-- Trust Badges Footer -->
+<div class="mt-8 flex justify-center opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">shield</span>
+<span class="text-xs font-bold uppercase tracking-widest">Razorpay Safe</span>
+</div>
+<div class="h-4 w-[1px] bg-slate-300"></div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg">verified</span>
+<span class="text-xs font-bold uppercase tracking-widest">PCI Compliant</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-20">
+<div class="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-sm">
+<p>© 2024 EcomLegacy Marketplace. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Use</a>
+<a class="hover:text-primary transition-colors" href="#">Refund Policy</a>
+</div>
+</div>
+</footer>
+
+<script src="config.js"></script>
+<script>
+// Cart and Checkout System
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Load and display cart with latest product data from Supabase
+async function loadCheckoutCart() {
+  const cartContainer = document.getElementById("cart-items");
+  
+  if (cart.length === 0) {
+    cartContainer.innerHTML = '<p class="text-center text-slate-500 py-4">Your cart is empty</p>';
+    return;
+  }
+
+  try {
+    // Fetch latest product details from Supabase
+    const productIds = cart.map(item => item.id);
+    const placeholders = productIds.map(() => '').join(',');
+    
+    console.log('🔄 Syncing cart with Supabase products...');
+    
+    const response = await fetch(
+      `${SUPABASE_URL}/rest/v1/products?id=in.(${productIds.join(',')})`,
+      {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    let latestProducts = {};
+    if (response.ok) {
+      const products = await response.json();
+      latestProducts = Object.fromEntries(products.map(p => [p.id, p]));
+      console.log('✓ Synced with latest product data');
+    }
+
+    // Update cart with latest product info
+    cart = cart.map(item => ({
+      ...item,
+      price: latestProducts[item.id]?.price ?? item.price,
+      name: latestProducts[item.id]?.name ?? item.name,
+      product_link: latestProducts[item.id]?.product_link ?? item.product_link
+    }));
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    let subtotal = 0;
+    cartContainer.innerHTML = cart.map((item, index) => {
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+      
+      return `
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-700">
+          <div class="flex-1">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200">${item.name}</h4>
+            <div class="flex items-center gap-2 mt-2">
+              <button class="qty-decrease px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded hover:bg-slate-300 dark:hover:bg-slate-600" data-index="${index}">
+                <span class="material-symbols-outlined text-sm">remove</span>
+              </button>
+              <span class="qty-display px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded min-w-12 text-center">${item.quantity}</span>
+              <button class="qty-increase px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded hover:bg-slate-300 dark:hover:bg-slate-600" data-index="${index}">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+              <button class="remove-item px-3 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 text-xs font-semibold ml-auto" data-index="${index}">
+                Remove
+              </button>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="font-bold text-slate-900 dark:text-white item-total">₹${itemTotal.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+    
+    // Add event listeners for quantity controls and remove buttons
+    document.querySelectorAll(".qty-decrease").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(btn.dataset.index);
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+          localStorage.setItem("cart", JSON.stringify(cart));
+          loadCheckoutCart();
+        }
+      });
+    });
+    
+    document.querySelectorAll(".qty-increase").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(btn.dataset.index);
+        cart[index].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCheckoutCart();
+      });
+    });
+    
+    document.querySelectorAll(".remove-item").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(btn.dataset.index);
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCheckoutCart();
+      });
+    });
+    
+    // Update totals
+    subtotal = 0;
+    cart.forEach(item => {
+      subtotal += item.price * item.quantity;
+    });
+    document.getElementById("subtotal").textContent = "₹" + subtotal.toFixed(2);
+    document.getElementById("total-amount").textContent = "₹" + subtotal.toFixed(2);
+  } catch (error) {
+    console.error('❌ Error syncing cart with products:', error);
+    // Fall back to displaying cart with stored data
+    let subtotal = 0;
+    cartContainer.innerHTML = cart.map((item, index) => {
+      const itemTotal = item.price * item.quantity;
+      subtotal += itemTotal;
+      
+      return `
+        <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-700">
+          <div class="flex-1">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200">${item.name}</h4>
+            <div class="flex items-center gap-2 mt-2">
+              <button class="qty-decrease px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded hover:bg-slate-300 dark:hover:bg-slate-600" data-index="${index}">
+                <span class="material-symbols-outlined text-sm">remove</span>
+              </button>
+              <span class="qty-display px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded min-w-12 text-center">${item.quantity}</span>
+              <button class="qty-increase px-2 py-1 bg-slate-200 dark:bg-slate-700 rounded hover:bg-slate-300 dark:hover:bg-slate-600" data-index="${index}">
+                <span class="material-symbols-outlined text-sm">add</span>
+              </button>
+              <button class="remove-item px-3 py-1 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-800 text-xs font-semibold ml-auto" data-index="${index}">
+                Remove
+              </button>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="font-bold text-slate-900 dark:text-white item-total">₹${itemTotal.toFixed(2)}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+    
+    // Re-bind event listeners
+    document.querySelectorAll(".qty-decrease").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(btn.dataset.index);
+        if (cart[index].quantity > 1) {
+          cart[index].quantity -= 1;
+          localStorage.setItem("cart", JSON.stringify(cart));
+          loadCheckoutCart();
+        }
+      });
+    });
+    
+    document.querySelectorAll(".qty-increase").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(btn.dataset.index);
+        cart[index].quantity += 1;
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCheckoutCart();
+      });
+    });
+    
+    document.querySelectorAll(".remove-item").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const index = parseInt(btn.dataset.index);
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        loadCheckoutCart();
+      });
+    });
+    
+    // Update totals
+    subtotal = 0;
+    cart.forEach(item => {
+      subtotal += item.price * item.quantity;
+    });
+    document.getElementById("subtotal").textContent = "₹" + subtotal.toFixed(2);
+    document.getElementById("total-amount").textContent = "₹" + subtotal.toFixed(2);
+  }
+}
+
+// Email Validation
+function validateEmail(email) {
+  // Basic format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { valid: false, error: 'Invalid email format' };
+  }
+
+  // List of common disposable/fake email domains - BLOCK THESE
+  const fakeDomains = [
+    'tempmail.com', 'temp-mail.com', '10minutemail.com', 'guerrillamail.com',
+    'mailinator.com', 'maildrop.cc', 'trashmail.com', 'sharklasers.com',
+    'yopmail.com', 'temp.email', 'throwaway.email', 'fakeinbox.com',
+    'temp-mail.io', 'tempmail.io', 'mailtmp.com', 'throwawaymail.com',
+    'test.com', 'test.co', 'fake.com', 'test123.com', 'example.com',
+    'temp-email.net', 'maileater.com', 'mintemail.com', 'mytrashmail.com',
+    'spam4.me', 'spamgourmet.com', 'tempemailaddress.com', 'tempemail.net',
+    '0-mail.com', 'a-a.net', 'aaaa.com', 'aaa.com'
+  ];
+
+  // List of TRUSTED/REAL email providers - ALLOW THESE
+  const trustedDomains = [
+    // Major providers
+    'gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'live.com',
+    'aol.com', 'icloud.com', 'mail.com', 'protonmail.com', 'tutanota.com',
+    // Professional domains (common corporate)
+    'company.com', 'corp.com', 'business.com', 'office365.com',
+    // Educational
+    'edu', 'ac.uk', 'ac.in', 'edu.au',
+    // India specific
+    'rediffmail.com', 'dataone.in', 'airtelmail.in',
+    // Add your own domain if needed
+  ];
+
+  const domain = email.split('@')[1].toLowerCase();
+  
+  // REJECT fake domains
+  if (fakeDomains.includes(domain)) {
+    return { valid: false, error: 'Temporary/fake email domains not allowed. Use real email (Gmail, Outlook, Yahoo, etc.)' };
+  }
+
+  // ONLY ALLOW trusted major providers + educational/corporate domains
+  const isTrustedDomain = trustedDomains.some(trusted => {
+    if (trusted.includes('.')) {
+      return domain === trusted;
+    } else {
+      return domain.endsWith('.' + trusted);
+    }
+  });
+
+  // Allow any corporate domain format (company@mycompany.com, user@bank.co.uk, etc.)
+  const isLikelyRealDomain = domain.includes('.') && !domain.includes('-temp') && !domain.includes('disposable');
+  
+  if (!isTrustedDomain && !isLikelyRealDomain) {
+    return { valid: false, error: 'Please use a real email address (Gmail, Outlook, Yahoo, or company email)' };
+  }
+
+  // Check for suspicious patterns
+  if (email.includes('..') || email.startsWith('.') || email.endsWith('.')) {
+    return { valid: false, error: 'Invalid email address' };
+  }
+
+  // Check for test/fake patterns
+  const suspiciousPatterns = /^(test|fake|demo|admin|noreply|no-reply|donotreply|asdf|qwerty|123|dummy)@/i;
+  if (suspiciousPatterns.test(email)) {
+    return { valid: false, error: 'Please provide your actual email address' };
+  }
+
+  // Check minimum email length
+  if (email.length < 6) {
+    return { valid: false, error: 'Email too short' };
+  }
+
+  return { valid: true };
+}
+
+// Razorpay Payment Handler
+async function initiateRazorpayPayment() {
+  const firstName = document.getElementById("firstName").value.trim();
+  const lastName = document.getElementById("lastName").value.trim();
+  const email = document.getElementById("email").value.trim();
+  
+  if (!firstName || !lastName || !email) {
+    alert("Please fill in all billing information");
+    return;
+  }
+
+  // Validate email
+  const emailValidation = validateEmail(email);
+  if (!emailValidation.valid) {
+    alert("❌ " + emailValidation.error);
+    return;
+  }
+  
+  if (cart.length === 0) {
+    alert("Your cart is empty");
+    window.location.href = "marketplace.html";
+    return;
+  }
+  
+  // Calculate total
+  let subtotal = 0;
+  cart.forEach(item => {
+    subtotal += item.price * item.quantity;
+  });
+  const totalInPaise = Math.round(subtotal * 100); // Convert to paise for Razorpay
+  
+  // Load Razorpay SDK
+  try {
+    await loadRazorpay();
+  } catch (error) {
+    alert("Failed to load payment gateway");
+    return;
+  }
+  
+  const options = {
+    key: RAZORPAY_KEY_ID, // Test key
+    amount: totalInPaise, // Razorpay expects amount in paise
+    currency: "INR",
+    name: "EcomLegacy",
+    description: `Purchase of ${cart.length} item(s)`,
+    handler: async function (response) {
+      // Payment successful
+      await processSuccessfulPayment(response, firstName, lastName, email);
+    },
+    prefill: {
+      name: firstName + " " + lastName,
+      email: email
+    },
+    theme: {
+      color: "#13c8ec"
+    }
+  };
+  
+  const rzp1 = new Razorpay(options);
+  rzp1.open();
+}
+
+// Process successful payment (save to localStorage)
+async function processSuccessfulPayment(paymentResponse, firstName, lastName, email) {
+  try {
+    console.log('✓ Payment successful, processing order...');
+    
+    let productLinks = [];
+    
+    // Create sales records for each cart item and save to Supabase + collect product links
+    for (const item of cart) {
+      console.log('Processing cart item:', item);
+      
+      // Use product link from cart (synced from Supabase) or fetch if not available
+      let productLink = item.product_link;
+      
+      if (!productLink) {
+        // Fallback: fetch product link from Supabase if not in cart
+        try {
+          const productRes = await fetch(
+            `${SUPABASE_URL}/rest/v1/products?id=eq.${item.id}&select=product_link`,
+            {
+              headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+              }
+            }
+          );
+          
+          if (productRes.ok) {
+            const products = await productRes.json();
+            if (products.length > 0 && products[0].product_link) {
+              productLink = products[0].product_link;
+              console.log('✓ Fetched product_link from Supabase:', productLink);
+            } else {
+              console.log('⚠️ Product link not found in Supabase');
+            }
+          } else {
+            console.log('❌ Failed to fetch product from Supabase:', productRes.status);
+          }
+        } catch (error) {
+          console.error('❌ Error fetching product link:', error);
+        }
+      } else {
+        console.log('✓ Using product_link from cart:', productLink);
+      }
+      
+      // Collect the link
+      if (productLink) {
+        productLinks.push(productLink);
+        console.log('📎 Added product link to list:', productLink);
+      }
+      
+      const saleData = {
+        product_id: item.id,
+        product_name: item.name,
+        amount: item.price * item.quantity,
+        quantity: item.quantity,
+        customer_name: firstName + ' ' + lastName,
+        customer_email: email,
+        payment_id: paymentResponse.razorpay_payment_id,
+        created_at: new Date().toISOString()
+      };
+      
+      console.log('Saving sale to database:', saleData);
+      
+      // Insert sale record into Supabase
+      const saleResponse = await fetch(
+        `${SUPABASE_URL}/rest/v1/sales`,
+        {
+          method: 'POST',
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+            'Prefer': 'return=representation'
+          },
+          body: JSON.stringify(saleData)
+        }
+      );
+      
+      if (!saleResponse.ok) {
+        const errorData = await saleResponse.json();
+        console.error(`❌ Failed to save sale for ${item.name}:`, saleResponse.status, errorData);
+      } else {
+        const savedSale = await saleResponse.json();
+        console.log(`✓ Sale recorded for ${item.name}:`, savedSale);
+      }
+    }
+    
+    console.log('✓ All sales processed');
+    console.log('Product links collected:', productLinks);
+    console.log('First product link:', productLinks[0]);
+    console.log('Transaction ID:', paymentResponse.razorpay_payment_id);
+    
+    // Show success modal with product link and transaction ID
+    const firstLink = productLinks.length > 0 ? productLinks[0] : null;
+    console.log('📤 Passing to modal:', {
+      name: firstName,
+      productLink: firstLink,
+      transactionId: paymentResponse.razorpay_payment_id
+    });
+    
+    showSuccessModal(firstName, firstLink, paymentResponse.razorpay_payment_id);
+  } catch (error) {
+    console.error('❌ Error processing payment:', error.message);
+    // Still show success modal even if recording fails, as payment went through
+    showSuccessModal(firstName, null, '');
+  }
+}
+
+// Simple Success Handler - save order and redirect to confirmation page
+function showSuccessModal(name, productLink, transactionId) {
+  console.log('🎯 PAYMENT SUCCESSFUL - PROCESSING ORDER');
+  console.log('Name:', name);
+  console.log('Product Link:', productLink);
+  console.log('Transaction ID:', transactionId);
+  
+  // Save order to localStorage
+  const orderConfirmation = {
+    customerName: name,
+    productLink: productLink,
+    transactionId: transactionId,
+    timestamp: new Date().toISOString(),
+    date: new Date().toLocaleDateString(),
+    time: new Date().toLocaleTimeString()
+  };
+  
+  localStorage.setItem('lastOrder', JSON.stringify(orderConfirmation));
+  console.log('💾 Order saved to localStorage');
+  
+  // Open product link if available
+  const isValidLink = productLink && typeof productLink === 'string' && productLink.trim().length > 0 && productLink.includes('http');
+  
+  if (isValidLink) {
+    console.log('🚀 Opening download link');
+    try {
+      const newTab = window.open(productLink, '_blank', 'noopener,noreferrer');
+      if (!newTab) {
+        // Fallback method
+        const link = document.createElement('a');
+        link.href = productLink;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    } catch (e) {
+      console.error('Error opening link:', e);
+    }
+  }
+  
+  // Show simple notification and redirect
+  const notification = document.createElement("div");
+  notification.className = "fixed top-4 right-4 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 flex items-center gap-2";
+  notification.innerHTML = `
+    <span class="material-symbols-outlined">check_circle</span>
+    <span>Order confirmed! Redirecting...</span>
+  `;
+  document.body.appendChild(notification);
+  
+  console.log('⏳ Redirecting to confirmation page in 2 seconds');
+  // Redirect to order confirmation page
+  setTimeout(() => {
+    console.log('📍 Redirecting to order-confirmation.html');
+    window.location.href = 'order-confirmation.html';
+  }, 2000);
+}
+
+// Initialize
+document.addEventListener("DOMContentLoaded", () => {
+  loadCheckoutCart();
+  
+  // Real-time email validation
+  const emailInput = document.getElementById("email");
+  if (emailInput) {
+    emailInput.addEventListener("input", (e) => {
+      const email = e.target.value.trim();
+      const errorDiv = document.getElementById("email-error");
+      const successDiv = document.getElementById("email-success");
+      
+      if (!email) {
+        errorDiv.classList.add("hidden");
+        successDiv.classList.add("hidden");
+        emailInput.classList.remove("border-red-500", "border-green-500");
+        emailInput.classList.add("border-slate-200");
+        return;
+      }
+      
+      const validation = validateEmail(email);
+      if (!validation.valid) {
+        errorDiv.textContent = validation.error;
+        errorDiv.classList.remove("hidden");
+        successDiv.classList.add("hidden");
+        emailInput.classList.remove("border-green-500", "border-slate-200");
+        emailInput.classList.add("border-red-500");
+      } else {
+        errorDiv.classList.add("hidden");
+        successDiv.classList.remove("hidden");
+        emailInput.classList.remove("border-red-500", "border-slate-200");
+        emailInput.classList.add("border-green-500");
+      }
+    });
+  }
+  
+  document.getElementById("pay-button").addEventListener("click", initiateRazorpayPayment);
+});
+</script>
+</body>
+</html>

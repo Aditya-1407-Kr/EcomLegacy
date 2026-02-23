@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcomLegacy | Product Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-active {
+            background-color: rgba(19, 200, 236, 0.15);
+            color: #13c8ec;
+            border-right: 4px solid #13c8ec;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-none">EcomLegacy</h1>
+<p class="text-xs text-slate-500 font-medium mt-1">Admin Panel</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 sidebar-active rounded-l-none rounded-r-lg transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-semibold text-sm">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-medium text-sm">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-medium text-sm">Users</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium text-sm">Analytics</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium text-sm">Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-4">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">person</span>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Alex Morgan</p>
+<p class="text-[10px] text-slate-500 uppercase">Super Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<!-- Header Section -->
+<header class="h-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8">
+<div>
+<h2 class="text-2xl font-bold tracking-tight">Product Management</h2>
+<p class="text-sm text-slate-500 font-medium">Manage your digital assets and storefront</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                        Add New Product
+                    </button>
+</div>
+</header>
+<!-- Stats Bar -->
+<div class="p-8 pb-0">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">database</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Products</p>
+<p class="text-2xl font-extrabold">1,284</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+<div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Sales</p>
+<p class="text-2xl font-extrabold">856</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+<div class="w-12 h-12 bg-amber-500/10 rounded-lg flex items-center justify-center text-amber-500">
+<span class="material-symbols-outlined">monetization_on</span>
+</div>
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider">Total Revenue</p>
+<p class="text-2xl font-extrabold">$42,500.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 p-8 overflow-y-auto">
+<!-- Filter Bar -->
+<div class="bg-white dark:bg-slate-900 rounded-t-xl border-x border-t border-slate-200 dark:border-slate-800 p-4 flex flex-wrap gap-4 items-center justify-between">
+<div class="flex flex-1 min-w-[300px] items-center gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search by name, SKU or tag..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-800 rounded-lg text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                            Filters
+                        </button>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm font-semibold focus:ring-2 focus:ring-primary/20">
+<option>Category: All</option>
+<option>Software</option>
+<option>E-books</option>
+<option>Templates</option>
+</select>
+<select class="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-sm font-semibold focus:ring-2 focus:ring-primary/20">
+<option>Status: All</option>
+<option>Active</option>
+<option>Draft</option>
+<option>Out of Stock</option>
+</select>
+</div>
+</div>
+<!-- Product Table -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-b-xl overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Product Details</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Category</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Price</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Sales</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Product Row 1 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/20 overflow-hidden flex-shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="Abstract blue digital product wave pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPRZgtraqRQ8IZtIvYL2WLfbpLHmJ-7XzjVfYTZcPrEbWip-78Q8h2Y1nXM7MLoQIInuPb2xGF0e4mydrOVGmnuzev1n4d7MiSYmySCCB5VJBPlZaJBKCGKalboyWlJCkSvjHaj42EKM246_5Jgxjj-Lwf6i680QlMCwWtjrwH2X-2qHp_XIFP9qbCIzxVoxlosOZ7lZmPR-4uVX7PXCCFzuj3xNv1RKnsQo4pNjX68BE-ErHuVCRQBacTlc8lzcSvvM2Pz2BTGgc')"></div>
+</div>
+<div>
+<p class="font-bold text-sm">SaaS Dashboard UI Kit</p>
+<p class="text-xs text-slate-500">SKU: DG-8821-XL</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">Design / UI Kits</span>
+</td>
+<td class="px-6 py-4 font-bold text-sm">$49.00</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">1,204</span>
+<span class="text-[10px] text-green-500 font-bold leading-none">+12% this month</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 text-[11px] font-bold rounded-full uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Product Row 2 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-200 overflow-hidden flex-shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="Minimalist orange and yellow digital background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJypSeFMTRRjTe-R-o8sTlAKTRLLw7ibSD2lQd6NMvPdvdUffi8kEYt7SgeTO6nSNpqWe3dz-idfb5ocmYNx2bTXi8s7nYr5_DnMvtPbzWSVM58HVz-OCQh1J1Tk6iLGEuvcLHAsJpMe0c2AZH5X9QuoKKhQJyQU_PebfxrqMXXl8i2v8J3N8W-wMj9TOH9fwrIgLKjVey5pM7O5_iY-Mf2TY0QrlD06hEAGAsixdz5Fwpeb-IL4MtPkRIlpuYiZIMkAy3M_kB47M')"></div>
+</div>
+<div>
+<p class="font-bold text-sm">E-commerce Backend v2</p>
+<p class="text-xs text-slate-500">SKU: DG-1102-CS</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">Software</span>
+</td>
+<td class="px-6 py-4 font-bold text-sm">$199.00</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">452</span>
+<span class="text-[10px] text-slate-500 font-bold leading-none">Stable trend</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 text-[11px] font-bold rounded-full uppercase tracking-wider">Draft</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Product Row 3 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/20 overflow-hidden flex-shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="Cyan and purple neon flow background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6Scp-px5nxXb0phtyx98pkJnwsMryO2uFqztuXlM9jGu9_JSQ2HhTzuJc92nH98zHqOOLC7ttm6IchUzoQXLNuPEcy5tPJTY0IOvdJqjK2mKh_qGtk4_Rl2CZ-9gt7UYqx8J9SmKNXwNWeyriUiqFBp_uUUU095mJ-2lwt7EKnqcz99_NXTDd9NpBsJ674HMREDyiOOTzqTkaz0h3vd8Qq8vkfvh8mZMUH0hm_DJ9AV2n2MEvl68cYtuE9UcUeRrVKJcrNu5ehkY')"></div>
+</div>
+<div>
+<p class="font-bold text-sm">Logo Design Mastery Course</p>
+<p class="text-xs text-slate-500">SKU: DG-9901-ED</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">Education</span>
+</td>
+<td class="px-6 py-4 font-bold text-sm">$29.99</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">2,488</span>
+<span class="text-[10px] text-green-500 font-bold leading-none">+24% this month</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-green-100 dark:bg-green-500/20 text-green-600 dark:text-green-400 text-[11px] font-bold rounded-full uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Product Row 4 -->
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-red-100 overflow-hidden flex-shrink-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="Deep magenta abstract gradient product thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCq9AXB07uvO2APlY5p25nBI8sCklmdbonedosF_zoV9rcWonTfZzaoQ9rU3V_ecoJTW8dYvmaB1niH90FD0seS-JmiqmRBF2JhoILS9FcDB49k_CMPSx3q3niXRoBsf7QPZ6cCYf_B8JbvmF8VJZa-MM6H0sFUcOuh8oyy4zHyGDzuQKy7uLdAG8VHWPHZ_mKeMORQwpas3w2PtY7BwoJEhoIarf3ysH18a8kDvKfolmIg-TiE6e3kHZHcmPrICyFUD3Iar74w9TM')"></div>
+</div>
+<div>
+<p class="font-bold text-sm">Premium Sound Pack Vol. I</p>
+<p class="text-xs text-slate-500">SKU: DG-4421-AU</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium">Audio</span>
+</td>
+<td class="px-6 py-4 font-bold text-sm">$15.00</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold">120</span>
+<span class="text-[10px] text-red-500 font-bold leading-none">-5% this month</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-red-100 dark:bg-red-500/20 text-red-600 dark:text-red-400 text-[11px] font-bold rounded-full uppercase tracking-wider">Out of Stock</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+<button class="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-md text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2">
+<p class="text-xs text-slate-500 font-medium">Showing <span class="text-slate-900 dark:text-slate-100 font-bold">1 to 10</span> of <span class="text-slate-900 dark:text-slate-100 font-bold">1,284</span> entries</p>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-400 transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition-colors">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition-colors">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition-colors">129</button>
+<button class="p-2 rounded-lg hover:bg-white dark:hover:bg-slate-700 text-slate-400 transition-colors">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

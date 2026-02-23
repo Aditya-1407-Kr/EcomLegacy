@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcomLegacy | Digital Marketplace</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .product-card:hover .action-buttons { opacity: 1; transform: translateY(0); }
+        .action-buttons { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Admin Login Modal -->
+<div id="admin-login-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-[9999] p-4">
+  <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 max-w-md w-full shadow-2xl">
+    <div class="text-center mb-8">
+      <img src="logo.svg" alt="EcomLegacy" class="h-16 w-16 mx-auto mb-4"/>
+      <h2 class="text-2xl font-bold mb-2">Admin Login</h2>
+      <p class="text-slate-500 dark:text-slate-400 text-sm">Enter credentials to access admin panel</p>
+    </div>
+    <form id="admin-login-form" class="space-y-4">
+      <div>
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">Email</label>
+        <input id="admin-email" class="w-full h-11 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-4 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="admin@example.com" type="email" required/>
+      </div>
+      <div>
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">Password</label>
+        <input id="admin-password" class="w-full h-11 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-4 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="••••••••" type="password" required/>
+      </div>
+      <div id="admin-error" class="text-sm text-red-500 hidden"></div>
+      <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2.5 rounded-lg transition-all flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined text-sm">login</span>
+        Login
+      </button>
+    </form>
+    <div class="text-center mt-6 space-y-2">
+      <p class="text-xs text-slate-500 dark:text-slate-400">Enter your admin credentials</p>
+    </div>
+    <button onclick="closeAdminLogin()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-900 dark:hover:text-white">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+</div>
+<!-- Global Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+<img src="logo.svg" alt="EcomLegacy" class="h-10 w-10"/>
+<span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase">EcomLegacy</span>
+</a>
+<!-- Search Bar -->
+<div class="hidden md:flex flex-1 max-w-lg mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-none rounded-xl focus:ring-2 focus:ring-primary text-sm transition-all" placeholder="Search premium assets..." type="text"/>
+</div>
+</div>
+<!-- Icons -->
+<div class="flex items-center gap-4">
+<nav class="hidden lg:flex items-center gap-6 mr-6">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="index.html">Home</a>
+</nav>
+<button class="px-4 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-all flex items-center gap-2" onclick="openAdminLogin()">
+<span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+Admin
+</button>
+
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs & Title -->
+<div class="mb-10">
+<nav class="flex text-sm text-slate-500 dark:text-slate-400 mb-2">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="mx-2 text-slate-300">/</span>
+<span class="text-slate-900 dark:text-slate-100 font-medium">Shop</span>
+</nav>
+<h1 class="text-4xl font-extrabold text-slate-900 dark:text-white">Marketplace Shop</h1>
+</div>
+
+<!-- Dashboard Stats (Under 1 Lakh) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10">
+<!-- Total Revenue -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">Total Revenue</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">₹67,840</p>
+<p class="text-xs text-green-500 mt-2">↑ 12% this month</p>
+</div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+</div>
+
+<!-- Latest Sale -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">Latest Sale</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">₹15,299</p>
+<p class="text-xs text-slate-500 mt-2">5 minutes ago</p>
+</div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+</div>
+
+<!-- Monthly Sales -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">This Month Sales</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">₹92,450</p>
+<p class="text-xs text-slate-500 mt-2">25 transactions</p>
+</div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+</div>
+</div>
+
+<!-- Active Orders -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 uppercase font-semibold mb-1">Active Orders</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">89</p>
+<p class="text-xs text-slate-500 mt-2">All processing</p>
+</div>
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="flex flex-col lg:flex-row gap-10">
+<!-- Main Product Grid -->
+<div class="flex-1">
+<!-- Grid Controls -->
+<div class="flex items-center justify-between mb-8 bg-white dark:bg-slate-800/50 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+<p class="text-sm text-slate-500">Showing 1–12 of 644 results</p>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700">
+<span class="text-xs font-semibold text-slate-500">Sort by:</span>
+<select class="bg-transparent border-none text-xs font-bold p-0 focus:ring-0" id="sortSelect">
+<option>Newest First</option>
+<option>Price: Low to High</option>
+<option>Best Rated</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Product Grid -->
+<div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Products loaded dynamically from Supabase -->
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center">
+<nav class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-xl bg-primary text-white font-bold flex items-center justify-center">1</button>
+<button class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-100 transition-colors">2</button>
+<button class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-100 transition-colors">3</button>
+<button class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<!-- Value Propositions Footer Section -->
+<section class="bg-white dark:bg-slate-900 py-16 border-t border-slate-200 dark:border-slate-800 mt-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Instant Delivery</h4>
+<p class="text-slate-500 dark:text-slate-400">Get access to your digital assets immediately after successful payment.</p>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">security</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Secure Checkout</h4>
+<p class="text-slate-500 dark:text-slate-400">All transactions are encrypted and protected by enterprise-grade security.</p>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">support_agent</span>
+</div>
+<h4 class="text-xl font-bold mb-2">Lifetime Support</h4>
+<p class="text-slate-500 dark:text-slate-400">Our dedicated team is here 24/7 to help you with any integration issues.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Simple Footer -->
+<footer class="bg-slate-50 dark:bg-background-dark py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+<!-- Support Section -->
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-2xl p-6">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2.5 rounded-lg text-primary">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white">Need Help?</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Email us anytime for support</p>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+<a href="mailto:a67023299@gmail.com" class="font-semibold text-primary hover:text-primary/80 transition-colors">a67023299@gmail.com</a>
+<button class="support-email-copy text-slate-400 hover:text-primary transition-colors p-1" title="Copy email">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<div class="bg-primary/20 p-1.5 rounded-lg text-primary">
+<span class="material-symbols-outlined text-xl">diamond</span>
+</div>
+<span class="text-lg font-bold tracking-tight uppercase">EcomLegacy</span>
+</div>
+<p class="text-sm text-slate-500">© 2024 EcomLegacy Digital Marketplace. All rights reserved.</p>
+<div class="flex gap-4 items-center">
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
+</div>
+<a href="seller-login.html" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold rounded-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">store</span>
+Seller Login
+</a>
+</div>
+</div>
+</div>
+
+<script>
+document.querySelector('.support-email-copy')?.addEventListener('click', () => {
+  navigator.clipboard.writeText('a67023299@gmail.com');
+  const btn = event.target.closest('.support-email-copy');
+  const icon = btn.querySelector('.material-symbols-outlined');
+  const originalIcon = icon.textContent;
+  icon.textContent = 'check';
+  btn.classList.add('text-green-500');
+  setTimeout(() => {
+    icon.textContent = originalIcon;
+    btn.classList.remove('text-green-500');
+  }, 2000);
+});
+</script>
+</footer>
+</body></html>

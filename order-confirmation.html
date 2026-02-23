@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmation | EcomLegacy</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="config.js"></script>
+<style>
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100">
+
+<!-- Navigation Header -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<img src="logo.svg" alt="EcomLegacy" class="h-10 w-10"/>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">EcomLegacy</h1>
+</div>
+<div class="flex items-center gap-6">
+<a class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="marketplace.html">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+Back to Marketplace
+</a>
+</div>
+</div>
+</header>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- Confirmation Card -->
+<div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden border-2 border-green-500">
+<!-- Header -->
+<div class="bg-gradient-to-r from-green-500 to-green-600 px-8 py-12 text-center">
+<div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+<span class="material-symbols-outlined text-6xl text-white">check_circle</span>
+</div>
+<h1 class="text-4xl font-bold text-white mb-2">Order Confirmed! 🎉</h1>
+<p class="text-green-100 text-lg">Your payment has been processed successfully</p>
+</div>
+
+<!-- Order Details -->
+<div class="p-8 space-y-8">
+<!-- Customer Info -->
+<div class="border-b border-slate-200 dark:border-slate-700 pb-6">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4">Order Details</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-1">Customer Name</p>
+<p class="text-lg font-semibold text-slate-900 dark:text-white customer-name">Loading...</p>
+</div>
+<div>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-1">Order Date & Time</p>
+<p class="text-lg font-semibold text-slate-900 dark:text-white order-datetime">Loading...</p>
+</div>
+</div>
+</div>
+
+<!-- Transaction Info -->
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-6">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Transaction ID</h3>
+<div class="flex items-center gap-3">
+<span class="flex-1 font-mono text-sm break-all text-slate-700 dark:text-slate-300 transaction-id">Loading...</span>
+<button class="copy-transaction-btn bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg font-semibold transition-all text-sm" title="Copy Transaction ID">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+
+<!-- Download Link -->
+<div id="link-section" class="hidden bg-green-50 dark:bg-green-950/30 rounded-xl p-6 border-2 border-green-200 dark:border-green-900">
+<h3 class="text-lg font-bold text-green-700 dark:text-green-300 mb-3">Your Download Link</h3>
+<div class="bg-white dark:bg-slate-900 border-2 border-green-300 dark:border-green-700 rounded-lg p-4 flex items-center gap-3">
+<span class="flex-1 font-mono text-sm break-all text-slate-700 dark:text-slate-300 product-link">Loading...</span>
+<button class="copy-link-btn bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-lg font-semibold transition-all text-sm whitespace-nowrap" title="Copy Link">
+<span class="material-symbols-outlined text-sm">content_copy</span> Copy
+</button>
+</div>
+<p class="text-sm text-green-600 dark:text-green-400 mt-3">💾 Link saved above - copy and save it somewhere safe!</p>
+</div>
+
+<!-- Important Notice -->
+<div class="bg-blue-50 dark:bg-blue-950/30 rounded-xl p-6 border-2 border-blue-200 dark:border-blue-900">
+<p class="font-bold text-blue-700 dark:text-blue-300 flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined">info</span>
+Important Information
+</p>
+<ul class="text-sm text-blue-700 dark:text-blue-300 space-y-2">
+<li>✓ Your order has been confirmed and payment processed</li>
+<li>✓ A confirmation email has been sent to your registered email</li>
+<li>✓ Your download link (if available) is displayed above</li>
+<li>✓ Save your Transaction ID for reference</li>
+</ul>
+</div>
+
+<!-- Support Contact -->
+<div class="bg-amber-50 dark:bg-amber-950/30 rounded-xl p-6 border-2 border-amber-200 dark:border-amber-900">
+<p class="font-bold text-amber-700 dark:text-amber-300 flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined">mail</span>
+Need Help?
+</p>
+<p class="text-sm text-amber-700 dark:text-amber-300 mb-3">If you have any questions or didn't receive your download link, contact us:</p>
+<div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-3 rounded-lg border border-amber-200 dark:border-amber-800">
+<span class="text-sm font-bold text-amber-900 dark:text-amber-100 support-email">a67023299@gmail.com</span>
+<button class="copy-email-btn bg-amber-500 hover:bg-amber-600 text-white px-3 py-1 rounded font-semibold transition-all text-xs" title="Copy Email">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 pt-6">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2" onclick="openDownloadLink()">
+<span class="material-symbols-outlined">download</span>
+Open Download Link
+</button>
+<button class="flex-1 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-900 dark:text-white py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2" onclick="goToMarketplace()">
+<span class="material-symbols-outlined">home</span>
+Back to Marketplace
+</button>
+</div>
+</div>
+</div>
+
+<!-- Refresh Info -->
+<div class="text-center mt-8">
+<p class="text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg align-middle">info</span>
+This page is saved locally - you can refresh it anytime and your order will still be here!
+</p>
+</div>
+</main>
+
+<script>
+// Load order confirmation from localStorage
+function loadOrderConfirmation() {
+  const lastOrder = localStorage.getItem('lastOrder');
+  
+  if (!lastOrder) {
+    // No order found, redirect to marketplace
+    console.log('No order found in localStorage');
+    window.location.href = 'marketplace.html';
+    return;
+  }
+  
+  const order = JSON.parse(lastOrder);
+  console.log('✓ Order loaded from localStorage:', order);
+  
+  // Populate page with order details
+  document.querySelector('.customer-name').textContent = order.customerName || 'Guest';
+  document.querySelector('.order-datetime').textContent = `${order.date} at ${order.time}`;
+  document.querySelector('.transaction-id').textContent = order.transactionId || 'N/A';
+  
+  // Show download link section if available
+  if (order.productLink) {
+    document.getElementById('link-section').classList.remove('hidden');
+    document.querySelector('.product-link').textContent = order.productLink;
+  }
+  
+  // Set support email
+  document.querySelector('.support-email').textContent = SUPPORT_EMAIL;
+}
+
+// Copy to clipboard functions
+document.querySelector('.copy-transaction-btn').addEventListener('click', () => {
+  const text = document.querySelector('.transaction-id').textContent;
+  navigator.clipboard.writeText(text);
+  
+  const btn = document.querySelector('.copy-transaction-btn');
+  const original = btn.innerHTML;
+  btn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
+  btn.classList.add('bg-green-500');
+  
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.classList.remove('bg-green-500');
+  }, 2000);
+});
+
+const copyLinkBtn = document.querySelector('.copy-link-btn');
+if (copyLinkBtn) {
+  copyLinkBtn.addEventListener('click', () => {
+    const text = document.querySelector('.product-link').textContent;
+    navigator.clipboard.writeText(text);
+    
+    const original = copyLinkBtn.innerHTML;
+    copyLinkBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Copied!';
+    copyLinkBtn.classList.add('bg-green-500');
+    
+    setTimeout(() => {
+      copyLinkBtn.innerHTML = original;
+      copyLinkBtn.classList.remove('bg-green-500');
+    }, 2000);
+  });
+}
+
+document.querySelector('.copy-email-btn').addEventListener('click', () => {
+  const text = document.querySelector('.support-email').textContent;
+  navigator.clipboard.writeText(text);
+  
+  const btn = document.querySelector('.copy-email-btn');
+  const original = btn.innerHTML;
+  btn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span>';
+  btn.classList.add('bg-green-600');
+  
+  setTimeout(() => {
+    btn.innerHTML = original;
+    btn.classList.remove('bg-green-600');
+  }, 2000);
+});
+
+function openDownloadLink() {
+  const link = document.querySelector('.product-link')?.textContent;
+  if (link && link !== 'Loading...') {
+    window.open(link, '_blank');
+  } else {
+    alert('No download link available');
+  }
+}
+
+function goToMarketplace() {
+  window.location.href = 'marketplace.html';
+}
+
+// Load order on page load
+document.addEventListener('DOMContentLoaded', loadOrderConfirmation);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seller Login - EcomLegacy</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#13c8ec",
+                    "background-light": "#f6f8f8",
+                    "background-dark": "#101f22",
+                },
+                fontFamily: {
+                    "display": ["Plus Jakarta Sans", "sans-serif"]
+                },
+            },
+        },
+    }
+</script>
+<style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+</style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-slate-900 dark:to-slate-800 min-h-screen flex items-center justify-center p-4">
+
+<!-- Seller Login Container -->
+<div class="w-full max-w-md">
+  <!-- Back to Marketplace -->
+  <a href="marketplace.html" class="inline-flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-primary mb-8 transition-colors">
+    <span class="material-symbols-outlined text-sm">arrow_back</span>
+    Back to Marketplace
+  </a>
+
+  <!-- Login Card -->
+  <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-8 text-center">
+      <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-blue-600 mx-auto mb-4">
+        <span class="material-symbols-outlined text-3xl">store</span>
+      </div>
+      <h1 class="text-3xl font-bold text-white mb-2">Seller Login</h1>
+      <p class="text-blue-100">Access your seller dashboard</p>
+    </div>
+
+    <!-- Form -->
+    <form id="seller-login-form" class="p-8 space-y-6">
+      <div>
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">Email Address</label>
+        <input id="seller-email" type="email" class="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="seller@example.com" required/>
+      </div>
+
+      <div>
+        <label class="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">Password</label>
+        <input id="seller-password" type="password" class="w-full px-4 py-3 border-2 border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all" placeholder="••••••••" required/>
+      </div>
+
+      <div id="seller-login-error" class="hidden p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-600 dark:text-red-400 text-sm"></div>
+
+      <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
+        <span class="material-symbols-outlined">login</span>
+        Login to Dashboard
+      </button>
+    </form>
+
+    <!-- Footer Info -->
+    <div class="px-8 py-6 bg-slate-50 dark:bg-slate-700/50 border-t border-slate-200 dark:border-slate-600">
+      <p class="text-xs text-center text-slate-600 dark:text-slate-400">
+        Don't have a seller account? <a href="admin.html" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 font-semibold">Contact Admin</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if already logged in
+  if (localStorage.getItem('sellerLoggedIn') === 'true') {
+    const sellerId = localStorage.getItem('sellerId');
+    const referralCode = localStorage.getItem('referralCode');
+    window.location.href = `seller-dashboard.html?seller_id=${sellerId}&referral=${referralCode}`;
+    return;
+  }
+
+  // Setup seller login handler
+  setupSellerLogin();
+});
+
+function setupSellerLogin() {
+  const form = document.getElementById('seller-login-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('seller-email').value.trim();
+    const password = document.getElementById('seller-password').value;
+    const errorDiv = document.getElementById('seller-login-error');
+
+    try {
+      console.log('🔐 Attempting seller login with email:', email);
+
+      // Fetch seller from database
+      const response = await fetch(
+        `${SUPABASE_URL}/rest/v1/sellers?email=eq.${encodeURIComponent(email)}`,
+        {
+          headers: {
+            'apikey': SUPABASE_ANON_KEY,
+            'Accept': 'application/json'
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to authenticate: ${response.status}`);
+      }
+
+      const sellers = await response.json();
+
+      if (!sellers || sellers.length === 0) {
+        errorDiv.textContent = '❌ Seller account not found';
+        errorDiv.classList.remove('hidden');
+        console.log('❌ No seller found with email:', email);
+        return;
+      }
+
+      const seller = sellers[0];
+
+      // Decode and verify password
+      const storedPassword = atob(seller.password);
+      if (storedPassword !== password) {
+        errorDiv.textContent = '❌ Invalid password';
+        errorDiv.classList.remove('hidden');
+        console.log('❌ Password mismatch for seller:', seller.name);
+        return;
+      }
+
+      // Check if seller is active
+      if (!seller.is_active) {
+        errorDiv.textContent = '❌ Your seller account has been deactivated';
+        errorDiv.classList.remove('hidden');
+        console.log('❌ Seller account is inactive:', seller.name);
+        return;
+      }
+
+      // Login successful
+      console.log('✓ Seller authenticated:', seller.name);
+
+      localStorage.setItem('sellerLoggedIn', 'true');
+      localStorage.setItem('sellerId', seller.id);
+      localStorage.setItem('referralCode', seller.referral_code);
+      localStorage.setItem('sellerName', seller.name);
+      localStorage.removeItem('adminLoggedIn');
+
+      // Redirect to seller dashboard
+      window.location.href = `seller-dashboard.html?seller_id=${seller.id}&referral=${seller.referral_code}`;
+
+    } catch (error) {
+      console.error('❌ Seller login error:', error);
+      errorDiv.textContent = '❌ Login error: ' + error.message;
+      errorDiv.classList.remove('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>

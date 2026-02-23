@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 620">
+  <!-- Star shape -->
+  <polygon points="250,170 310,320 470,320 350,420 410,570 250,470 90,570 150,420 30,320 190,320" fill="#001a4d" stroke="#001a4d" stroke-width="2"/>
+  
+  <!-- Orbit rings -->
+  <ellipse cx="250" cy="340" rx="200" ry="80" fill="none" stroke="#001a4d" stroke-width="12"/>
+  <ellipse cx="250" cy="340" rx="200" ry="80" fill="none" stroke="#001a4d" stroke-width="6" stroke-dasharray="0,20" opacity="0.6"/>
+  
+  <!-- Arrow accent -->
+  <path d="M 420 260 Q 400 300 380 340" fill="none" stroke="#001a4d" stroke-width="12" stroke-linecap="round"/>
+  <polygon points="380,340 395,310 405,345" fill="#001a4d"/>
+</svg>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcomLegacy | High-End Digital Products Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13c8ec",
+                        "background-light": "#f6f8f8",
+                        "background-dark": "#101f22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(19, 200, 236, 0.1);
+        }
+        .dark .glass-card {
+            background: rgba(16, 31, 34, 0.8);
+            border: 1px solid rgba(19, 200, 236, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, rgba(19, 200, 236, 0.15), transparent 50%);
+        }
+    </style>
+<style>
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-primary {
+        0% { box-shadow: 0 0 0 0 rgba(19, 200, 236, 0.4); }
+        70% { box-shadow: 0 0 0 15px rgba(19, 200, 236, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(19, 200, 236, 0); }
+    }
+    @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(50px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+    .reveal { opacity: 0; transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-up { transform: translateY(40px); }
+    .reveal-left { transform: translateX(-40px); }
+    .reveal-right { transform: translateX(40px); }
+    .pulse-btn { animation: pulse-primary 2s infinite; }
+    .hover-lift { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .hover-lift:hover { transform: translateY(-8px) scale(1.02); }
+    .hero-animate { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+</style></head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+<div class="relative min-h-screen flex flex-col">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-2">
+<div class="p-1.5 bg-primary rounded-lg">
+<span class="material-symbols-outlined text-background-dark font-bold">rocket_launch</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-slate-900 dark:text-white uppercase">EcomLegacy</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Marketplace</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#benefits">Benefits</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#path">Path to Success</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#stories">Creator Stories</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<a href="marketplace.html" class="px-6 py-2.5 bg-primary text-background-dark hover:shadow-lg hover:shadow-primary/20 rounded-lg text-sm font-bold transition-all inline-block">
+                        Start Selling Now
+                    </a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<main class="flex-grow">
+<section class="relative pt-20 pb-32 px-6 hero-gradient">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<div class="flex flex-col gap-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                            New: 2024 Digital Asset Library
+                        </div>
+<h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] tracking-tight text-slate-900 dark:text-white hero-animate stagger-1">
+                            Launch Your <span class="text-primary">Digital Empire</span> in Minutes.
+                        </h1>
+<p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl hero-animate stagger-2">
+                            Access 10,000+ viral assets, ready-made websites, and full resell rights. Skip the months of creation and start scaling your income today.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="marketplace.html" class="h-14 px-8 bg-primary text-background-dark rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 hero-animate stagger-3 pulse-btn">
+                                Start Selling Now
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+<a href="marketplace.html" class="h-14 px-8 border-2 border-slate-200 dark:border-slate-800 rounded-xl font-bold text-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 hero-animate stagger-3">
+                                View Marketplace
+                            </a>
+</div>
+<div class="flex items-center gap-6 pt-4">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a successful young entrepreneur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlGye3yTDoH5YWidU9vX3JM-Pbm6NIJGwaPSbMraUADr-00QklIoSF7eodUwWxjcU_nBqx2Ax612mzaCuzx-bqr88gMokKhHrRAB_p7_6luo3bnHeNaEs9_9cS3Evy02TDoZnszcxKCNSDCy0wwiqbOtu5_uYVBCXp07t8CPmZNfefTMBWtt9PYV1jHWVURnhax8W0a9U6pZ1EAy1Jr3-YLtdApWU2BhYLxTBRSqAiSGunABZoWgbEmN-Ys_1wU2tVXjyoie9Dpf0"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a digital creator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmnSq2Xxzr_Zr920reD_GrfVPL5s2m9nZgx2YByr_vjrKna5x2wERMXVEhWb6kqk9-N_uW96mmyLBChIDlXRbVs8t3MOyigRV-AQrND7xG7EEaf2_Z_laJJv1UoAmh0hRk0AxuoFTAoBsLaVJ7b79vmnDiW0SBfeUlZfx_QBAqbMROWKKPGiJARrQjAPJtLzrixfheGTMtcps24USYMw4SzuKYsbcQSgI0sFhG4AO5ZCZmkCvNbla53e3VBO7Y0uU3pDSieUUI7YA"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female business owner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbkKJUlAqZdK7RfFHCsF3wIdcGtvtuVqNQf881DoB6aNkyPj99iAGpzLGBkolNN1hojkXPEL-O-woxekfcLUNc6eJA65gqls3KrSWByJmClEpK7__ZmSbjiLT_rU0Ce40YG20XTx56z9ZgJu_eWvRuCPN_CvhEtRWRD4iz27ZO5nzsdoNLIY3a5Rn_6wU1GfbsaiXYO6TAMnukWwr0zLwf0AzFl_w1JQXwtV4CDVuyNLL1rq8UiPpY6I718l5JvgRM0_WODFpDUXE"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold">
+                                    +2k
+                                </div>
+</div>
+<p class="text-sm text-slate-500 font-medium">Joined by 2,000+ creators this month</p>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
+<div class="relative glass-card rounded-2xl overflow-hidden shadow-2xl border-slate-200 dark:border-slate-800">
+<img class="w-full aspect-[4/3] object-cover" data-alt="Abstract 3D digital liquid metal waves representing digital creation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6YkAsBmU5UWpHvE9FkQUQxMaO8KvsUonpe3I0miI-yCDsJeLcqIlqqubGPsVTuCAGEPsoZiou2f-Yy0V5BtozrT0o9o6MYoK7zk0achOUYT-4qbgr2Cz8rZmSKQh4HO2ZQiZFx7OoyoYPBgGmEc6Qd5xzf2ZYXc7azV4kFlhM3KnJHziCP3bpwLvR6wieOV1O9toxNQ8EHAnqfOBUM7N9q5GeBjJxR_RUiU-mm1XHy0SuMmMEff9Pv0kZPvV79SybIsVIyk_duPs"/>
+<div class="absolute bottom-6 left-6 right-6 p-6 glass-card rounded-xl">
+<div class="flex items-center justify-between mb-4">
+<span class="text-sm font-bold text-primary">Live Dashboard</span>
+<span class="text-xs bg-green-500/20 text-green-500 px-2 py-1 rounded">Active Now</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-xs text-slate-500">Total Revenue</p>
+<p class="text-xl font-extrabold">₹12,34,567.00</p>
+</div>
+<div>
+<p class="text-xs text-slate-500">New Orders</p>
+<p class="text-xl font-extrabold">+142</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits Grid -->
+<section class="py-24 px-6 bg-slate-50 dark:bg-slate-900/50" id="benefits">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Core Benefits</h2>
+<h3 class="text-4xl md:text-5xl font-extrabold mb-6">Everything You Need to Scale</h3>
+<p class="text-lg text-slate-600 dark:text-slate-400">Professional assets designed for high-conversion and instant business launch.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Benefit 1 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<h4 class="text-xl font-bold mb-3">10,000+ Viral Reels</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">High-engagement video content ready to post and drive traffic.</p>
+</div>
+<!-- Benefit 2 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">language</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Ready-Made Websites</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Plug-and-play high-converting sites to host your products instantly.</p>
+</div>
+<!-- Benefit 3 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Full Resell Rights</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Own the products entirely and keep 100% of the profits you generate.</p>
+</div>
+<!-- Benefit 4 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">speed</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Instant Business Launch</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Go from zero to live and accepting payments in under an hour.</p>
+</div>
+<!-- Benefit 5 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">hourglass_empty</span>
+</div>
+<h4 class="text-xl font-bold mb-3">100+ Hours Saved</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Skip the content creation grind and focus purely on sales.</p>
+</div>
+<!-- Benefit 6 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Scalable Income Model</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Built for sustainable, long-term growth and compound earnings.</p>
+</div>
+<!-- Benefit 7 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">diamond</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Professional Assets</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Premium quality designs and templates that look like they cost ₹99,999+.</p>
+</div>
+<!-- Benefit 8 -->
+<div class="p-8 rounded-2xl bg-white dark:bg-background-dark border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all group reveal reveal-up hover-lift">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-background-dark transition-colors">
+<span class="material-symbols-outlined">map</span>
+</div>
+<h4 class="text-xl font-bold mb-3">Step-by-Step Guidance</h4>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">Expert roadmaps to ensure your success from day one.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Path to Success -->
+<section class="py-24 px-6 overflow-hidden" id="path">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col lg:flex-row gap-20 items-center">
+<div class="lg:w-1/2">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">How it works</h2>
+<h3 class="text-4xl md:text-5xl font-extrabold mb-8 leading-tight">Your Clear Path to <br/>Digital Freedom</h3>
+<div class="flex flex-col gap-10">
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-background-dark flex items-center justify-center font-black text-xl shadow-lg shadow-primary/30">1</div>
+<div>
+<h4 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Choose Your Niche</h4>
+<p class="text-slate-600 dark:text-slate-400">Select from our massive library of trending assets across 50+ profitable categories.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-background-dark flex items-center justify-center font-black text-xl shadow-lg shadow-primary/30">2</div>
+<div>
+<h4 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Brand Your Store</h4>
+<p class="text-slate-600 dark:text-slate-400">Use our plug-and-play templates to create a premium storefront that converts visitors into buyers.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-background-dark flex items-center justify-center font-black text-xl shadow-lg shadow-primary/30">3</div>
+<div>
+<h4 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Start Scaling</h4>
+<p class="text-slate-600 dark:text-slate-400">Deploy viral content and start seeing profits in your account. You keep 100% of every sale.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 relative">
+<div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+<div class="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 shadow-2xl">
+<img class="rounded-xl w-full" data-alt="Screenshot of an e-commerce dashboard showing rising sales graphs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6wt2R0YHoOVWnuBjDysPsVqNP9FRVh0R4fGH-R3CpYML9KHwSk44pmswXQV8a3n0CmkJAC4uap50Wataram0guk1fXq_nwDDDeSvj6mQGAgNKQ_zGBb2fN923LrTPOs6NROqmkoysA_0G3g2khpR4dAv221IUTleiFHdw__aJtNJw_lSCz6o5cUlwh7o5qlwDaNlpp4BDBPTS6FKF7QnmgzX95T942mvqTFc7oBLExYvSptyqWOqKhMUZn9rjycAUG8G0TihEZxc"/>
+<div class="mt-4 flex items-center justify-between p-4 bg-primary/5 rounded-lg border border-primary/10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold">payments</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 font-bold uppercase">Latest Sale</p>
+<p class="font-bold">+₹12,340.00 from Digital Kit</p>
+</div>
+</div>
+<span class="text-xs text-slate-400 font-medium italic">2 mins ago</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Creator Stories -->
+<section class="py-24 px-6 bg-slate-50 dark:bg-slate-900/50" id="stories">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+<div class="max-w-2xl">
+<h2 class="text-primary font-bold tracking-widest uppercase text-sm mb-4">Success Stories</h2>
+<h3 class="text-4xl md:text-5xl font-extrabold mb-6">Built by Real Creators</h3>
+<p class="text-lg text-slate-600 dark:text-slate-400">See how hundreds of creators transition from zero to full-time digital income.</p>
+</div>
+<button class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-background-dark font-bold rounded-xl transition-all">
+                            Join the Community
+                        </button>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Story 1 -->
+<div class="glass-card p-8 rounded-2xl border-slate-200 dark:border-slate-800 flex flex-col gap-6 reveal reveal-up hover-lift">
+<div class="flex items-center gap-4">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Portrait of Sarah, a digital entrepreneur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-JSDme-evzXX4E5zHOyJSDd4VZ21TavddKkeW-wm894bqIPVkPQV14stlHG_AA4AGKFc1OvMNRFb-Kc7eI-puDfm3BSpG1zmOFDtNOvbURAc9ZkHo54l-DYaBsz-CPkq78IlNnZ_vFK4now_N2hDj_jYygAEvAvF4goNrYQeWnOwgNldgHIF723tqCuxfj5outnwFYg--3KNYDOKAJL1k_-cp3lvEeSiqC980_Ar47MD0v-8ZFCUbL5XqjyLXuiDxyHTH7-vZt4Q"/>
+<div>
+<h5 class="font-bold">Sarah Jenkins</h5>
+<p class="text-xs text-primary font-semibold uppercase">Finance Niche</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 italic">"I was struggling to create content for months. EcomLegacy gave me the assets and the confidence to launch my shop. I hit ₹87,600 in my first 30 days."</p>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+<p class="text-2xl font-black text-primary">₹89,750</p>
+<p class="text-xs text-slate-500 uppercase font-bold">Total Sales (90 Days)</p>
+</div>
+</div>
+<!-- Story 2 -->
+<div class="glass-card p-8 rounded-2xl border-slate-200 dark:border-slate-800 flex flex-col gap-6 reveal reveal-up hover-lift">
+<div class="flex items-center gap-4">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Portrait of Marcus, a digital product creator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYSGd0J3pedc4W-nZ-_s7-aab-J9CDiYaDPIDxLeugUDUQly1JP5StKpOFcsVO9MiOEFfelleJfZPUHyStKKGgnfn3FBYMKoyfeqp3xb3jcPfpY_qgTyWhdss4fhJUQlADwiOlStzlb_4uLDNRqF4mZgyqQjJG7pC4-o3kxCNo6mKOlXsKrkRVq9PbxHTaXXrbswyT1kCcOaWBAK5Q9zpnTB2sycm01xxqTvEYtOScHk9rWPP8KrgMzCGEKGLoX6RqAgiEij_9H88"/>
+<div>
+<h5 class="font-bold">Marcus Chen</h5>
+<p class="text-xs text-primary font-semibold uppercase">Fitness &amp; Lifestyle</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 italic">"The Resell Rights are a game changer. Being able to sell high-quality products without filming a single video myself is exactly what I needed to scale."</p>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+<p class="text-2xl font-black text-primary">₹76,290</p>
+<p class="text-xs text-slate-500 uppercase font-bold">Monthly Revenue</p>
+</div>
+</div>
+<!-- Story 3 -->
+<div class="glass-card p-8 rounded-2xl border-slate-200 dark:border-slate-800 flex flex-col gap-6 reveal reveal-up hover-lift">
+<div class="flex items-center gap-4">
+<img class="w-14 h-14 rounded-full object-cover" data-alt="Portrait of Elena, a successful shop owner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKrbWGZIup6rrPYl4ZXuh2nKmmht7oLrvwlEgvpVQ3CefErS3zvLsVahvc8yAP8glqjpg5tI_tDXEzwv2Iel6m1M7-n0D0CRoWrkLErdtIc_4jSNH2aoDp-KduBYoOuZT1PINJNwJ6_FTZmtz9PRIEbPP6NzI2J27nloUP5OJXL-RLjAIUgqOCt9_gR6pM1FiRO_Nk4r8zH9Ybm8bbkb71cpWWtxg_X0aBJhBNEA_c7tdSNaZvvfGI-6eCb3v0kVA78Jtxzr7eiqs"/>
+<div>
+<h5 class="font-bold">Elena Rodriguez</h5>
+<p class="text-xs text-primary font-semibold uppercase">Self-Improvement</p>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 italic">"The website templates look professional and high-end. Within 48 hours of joining, my store was live and I had my first three sales. Best investment ever."</p>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+<p class="text-2xl font-black text-primary">₹65,400</p>
+<p class="text-xs text-slate-500 uppercase font-bold">First Month Earnings</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-6 reveal reveal-up">
+<div class="max-w-5xl mx-auto rounded-[2.5rem] bg-background-dark dark:bg-slate-900 overflow-hidden relative shadow-2xl">
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+<div class="relative z-10 p-12 md:p-20 text-center flex flex-col items-center gap-8">
+<h2 class="text-4xl md:text-6xl font-black text-white leading-tight">Ready to Start Your <br/><span class="text-primary">Success Story?</span></h2>
+<p class="text-lg text-slate-400 max-w-xl">Join thousands of creators who have skipped the creation phase and went straight to scaling. Your digital empire starts here.</p>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<a href="marketplace.html" class="h-16 px-10 bg-primary text-background-dark rounded-xl font-bold text-xl hover:scale-105 transition-all pulse-btn inline-block text-center">
+                                Start Selling Now
+                            </a>
+<a href="marketplace.html" class="h-16 px-10 border border-slate-700 text-white rounded-xl font-bold text-xl hover:bg-slate-800 transition-colors inline-block text-center">
+                                View Marketplace
+                            </a>
+</div>
+<p class="text-slate-500 text-sm font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
+                            No experience required. Instant access after sign up.
+                        </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 py-16 px-6">
+<div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-2">
+<div class="p-1 bg-primary rounded">
+<span class="material-symbols-outlined text-background-dark font-bold text-sm">rocket_launch</span>
+</div>
+<span class="text-lg font-extrabold tracking-tight uppercase">EcomLegacy</span>
+</div>
+<p class="text-sm text-slate-500 leading-relaxed">The world's premium marketplace for high-end digital assets and business-in-a-box solutions for modern creators.</p>
+</div>
+<div>
+<h6 class="font-bold mb-6 text-slate-900 dark:text-white">Platform</h6>
+<ul class="flex flex-col gap-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Marketplace</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Resell Rights</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Viral Library</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6 text-slate-900 dark:text-white">Resources</h6>
+<ul class="flex flex-col gap-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Success Path</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Creator Blog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Affiliate Program</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6 text-slate-900 dark:text-white">Legal</h6>
+<ul class="flex flex-col gap-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Licensing</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 space-y-8">
+<!-- Support Section -->
+<div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-2xl p-6">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2.5 rounded-lg text-primary">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+</div>
+<div>
+<p class="font-semibold text-slate-900 dark:text-white">Need Help?</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Email us anytime for support</p>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-white dark:bg-slate-900 px-4 py-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+<a href="mailto:a67023299@gmail.com" class="font-semibold text-primary hover:text-primary/80 transition-colors">a67023299@gmail.com</a>
+<button class="support-email-copy text-slate-400 hover:text-primary transition-colors p-1" title="Copy email">
+<span class="material-symbols-outlined text-lg">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+
+<div class="flex flex-col md:row items-center justify-between gap-4">
+<p class="text-xs text-slate-500">© 2024 EcomLegacy. All rights reserved. Designed for digital dominators.</p>
+<div class="flex items-center gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+</div>
+</div>
+
+</footer>
+</div>
+<script>
+    const observerOptions = { threshold: 0.15 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Support email copy functionality
+    document.querySelector('.support-email-copy')?.addEventListener('click', () => {
+      navigator.clipboard.writeText('a67023299@gmail.com');
+      const btn = event.target.closest('.support-email-copy');
+      const icon = btn.querySelector('.material-symbols-outlined');
+      const originalIcon = icon.textContent;
+      icon.textContent = 'check';
+      btn.classList.add('text-green-500');
+      setTimeout(() => {
+        icon.textContent = originalIcon;
+        btn.classList.remove('text-green-500');
+      }, 2000);
+    });
+</script></body></html>
